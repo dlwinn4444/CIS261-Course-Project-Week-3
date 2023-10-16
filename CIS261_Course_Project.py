@@ -5,23 +5,30 @@ from site import ENABLE_USER_SITE
 
 
 def main():
-   
+   #get employee name
    employee()
+   #start loop
    if e_name != 'end':
+     #call for hours
      hours()
+     #callfor pay rate 
      pay_rate()
+     #call for tax rate
      tax_rate()
-     caculate_pay(
-     print('Employee name: ', e_name,'Gross pay: $', g_pay,'Income taxes: $', I_tax,'Net Pay: $', n_pay)
-     t_gross =t_gross + g_pay
+     #call caculate input return results
+     caculate_pay(h_worked,p_rate,t_rate)
+     #display employee's caculate payroll
+     e_totals(e_name,g_pay,i_tax,n_pay)
+     #runnuing totals
+     e_count += 1
+     t_hours= t_hours + hours
      t_tax = t_tax + i_tax
-     t_net = t_net + n_pay
+     t_net = t_net = n_pay
+     
      main()
       
    elif e_name == 'end':
-        print('Number of employess:', e_total)
-        print('Total gross pay: $',t_gross)
-        print('Total Income taxes: $',t_net)
+       r_totals(t_hours,t_tax,t_net)
 
 def employee():
     e_name = input('Employee name or end to quit: ')
@@ -36,20 +43,28 @@ def pay_rate():
     return main(p_rate)
 
 def tax_rate():
-    t_rate = input('Income tax rate: ')
+    t_rate = input('Income tax rate:(decimal only) ')
     return main(t_rate)
 
 
 
-def grosspay():
+def caculate_pay():
     g_pay = h_worked * p_rate
     i_tax = g_pay * t_rate
-    return main(g_pay,
+    n_pay = g_pay - i_tax
+    return main(g_pay,i_tax,n_pay)
 
-def taxes():
-     
-    return i_tax
+def e_totals():
+    print('Employee name: ',e_name)
+    print('Gross pay: $',g_pay)
+    print('Income tax $',i_tax)
+    print('Net pay: $',n_pay)
+    return main()
 
-ef 
+def r_totals():
+    print('Total employees: ',e_count)
+    print('Total gross pay: $',t_gross)
+    print('Total income tax: $',t_tax)
+    print('Total net pay: $',t_net)
     
-main()
+__name__=__main__
