@@ -1,8 +1,10 @@
 # Dwayne Winn CSI261 Class project week 3
 
+from ctypes.wintypes import DWORD
 import decimal
 from pickletools import TAKEN_FROM_ARGUMENT1
 from site import ENABLE_USER_SITE
+from tkinter import Pack
 
 def main():
 
@@ -10,21 +12,25 @@ def main():
   t_gross = float(0.00)
   t_tax = float(0.00)
   t_net = float(0.00)
-  e_total = float(0.00)
-
+  e_total = int()
+  t_hours = float(0.00)
+  
+  i_tax = 0
+  p_rate = 0
+  n_pay = 0
+  g_pay = 0
   #get first employee name 
   e_name =  employee()
 
   #start loop
   while e_name != 'end':
-
      #user input hours worked function
      h_worked = hours()
 
      #call pay rate function
      p_rate = pay_rate()
 
-     #call tax rate function
+     # call tax rate function
      t_rate = tax_rate()
 
      #call gross pay funtion 
@@ -36,23 +42,21 @@ def main():
      #call caculate net pay functions
      e_pay= net_pay(g_pay,i_tax)
 
-      #call function to display employee
-     d_pay(e_name,h_worked,i_tax,g_pay,i_tax,e_pay)
+     #call function to display employee
+     d_pay(e_name,h_worked,p_rate,g_pay,i_tax,e_pay)
 
      #running totals
+     t_hours += h_worked
      t_gross += g_pay
      t_tax += i_tax
      t_net += e_pay
      e_total += 1
      e_name = employee()
+  #Call display totals
+  totals(e_total,t_hours,t_gross,t_tax,t_net)
 
 
-#display running totals
-  print('Number of employess:', e_total)
-  print('Total gross pay: $',t_gross)
-  print('Total income tax: $',t_tax)
-  print('Total Income taxes: $',t_net)
-  
+
     
 
 #employee name functions
@@ -67,7 +71,7 @@ def hours():
 
 #pay rate function
 def pay_rate():
-    p_rate = float(input('Pay rate: '))
+    p_rate = float(input('Pay rate: '))56tyughf
     return p_rate
 
 #tax rate functions
@@ -78,18 +82,23 @@ def tax_rate():
     
 #display caculated data
 def d_pay(e_name,h_worked,p_rate,g_pay,i_tax,e_pay):
-    print('Employee Name     Hours  Rate Gross Tax Net')
-    print(e_name, f"{h_worked: ,.2f}",,f{p_rate:,.2f}", f"{g_pay:,.2f}", f"{i_tax:,.2f}", f"{e_pay:,.2f}")
+    
+    print('Emplyee ',e_name)
+    print('Hours: ',f"{h_worked: ,.2f}")
+    print('Pay Rate: $',f"{p_rate:,.2f}",)
+    print('Gross pay: $',f"{g_pay:,.2f}")
+    print('Income tax: $', f"{i_tax:,.2f}")
+    print('Net pay: $', f"{e_pay:,.2f}")
     return
 
 #caculate gross pay functions
 def grosspay(h_worked,p_rate):
-    g_pay = (h_worked * p_rate)
+    g_pay = h_worked * p_rate
     return float(g_pay)
 
 # caculate income tax functions
 def taxes(g_pay,t_rate):
-    i_tax = (g_pay * t_rate)
+    i_tax = g_pay * t_rate
     return float(i_tax)
 
 #caculate net_pay
@@ -97,5 +106,14 @@ def  net_pay(g_pay,i_tax):
    e_pay = g_pay - i_tax
    return float(e_pay)
 
+#display running totals
+def totals(e_total,t_hours,t_gross,t_tax,t_net):
+   print('Number of employess:',f"{e_total:,.2f}")
+   print('Total hours: ',f"{t_hours:,.2f}")
+   print('Total gross pay: $',f"{t_gross:,.2f}")
+   print('Total income tax: $',f"{t_tax:,.2f}")
+   print('Total net taxes: $',f"{t_net:,.2f}")
+  
+
 if __name__ == '__main__':
-    main()
+     main()
