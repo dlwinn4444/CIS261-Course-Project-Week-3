@@ -1,20 +1,14 @@
 # Dwayne Winn CSI261 Class project week 3
 
-from ctypes.wintypes import DWORD
-import decimal
-from pickletools import TAKEN_FROM_ARGUMENT1
-from site import ENABLE_USER_SITE
-from tkinter import Pack
+
 
 def main():
-
-  #zero counters
-  t_gross = float(0.00)
-  t_tax = float(0.00)
-  t_net = float(0.00)
+  t_gross = float()
+  t_net = float()
+  t_tax = float()
+  t_hours = float()
   e_total = int()
-  t_hours = float(0.00)
-  
+  #zero counter
   i_tax = 0
   p_rate = 0
   n_pay = 0
@@ -45,19 +39,24 @@ def main():
      #call function to display employee
      d_pay(e_name,h_worked,p_rate,g_pay,i_tax,e_pay)
 
-     #running totals
-     t_hours += h_worked
-     t_gross += g_pay
-     t_tax += i_tax
-     t_net += e_pay
-     e_total += 1
-     e_name = employee()
+     #call running totals function
+     r_totals(h_worked,g_pay,i_tax,e_pay,t_gross,t_hours,t_net,t_tax,e_total)
+    
+     #get next employee name
+     print
+     e_name = employee() 
+     
+     
   #Call display totals
   totals(e_total,t_hours,t_gross,t_tax,t_net)
 
-
-
-    
+def r_totals(h_worked,g_pay,i_tax,e_pay,t_gross,t_hours,t_net,t_tax,e_total):
+    t_gross += g_pay
+    t_hours += h_worked
+    t_tax += i_tax
+    t_net += e_pay
+    e_total += 1
+    return t_hours,t_tax,t_net,t_gross,e_total
 
 #employee name functions
 def employee():
@@ -71,7 +70,7 @@ def hours():
 
 #pay rate function
 def pay_rate():
-    p_rate = float(input('Pay rate: '))56tyughf
+    p_rate = float(input('Pay rate: '))
     return p_rate
 
 #tax rate functions
@@ -108,7 +107,7 @@ def  net_pay(g_pay,i_tax):
 
 #display running totals
 def totals(e_total,t_hours,t_gross,t_tax,t_net):
-   print('Number of employess:',f"{e_total:,.2f}")
+   print('Number of employess:',e_total)
    print('Total hours: ',f"{t_hours:,.2f}")
    print('Total gross pay: $',f"{t_gross:,.2f}")
    print('Total income tax: $',f"{t_tax:,.2f}")
@@ -116,4 +115,4 @@ def totals(e_total,t_hours,t_gross,t_tax,t_net):
   
 
 if __name__ == '__main__':
-     main()
+   main()
