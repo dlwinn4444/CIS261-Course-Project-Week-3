@@ -21,16 +21,16 @@ def main():
      #user input hours worked function
      h_worked = hours()
 
-     #call pay rate function
+     #call pay rate input function
      p_rate = pay_rate()
 
-     # call tax rate function
+     # call tax rate input function
      t_rate = tax_rate()
 
      #call gross pay funtion 
      g_pay = grosspay(h_worked,p_rate)
 
-     #call
+     #get income tax cacualtion function
      i_tax = taxes(g_pay,t_rate)
 
      #call caculate net pay functions
@@ -38,25 +38,20 @@ def main():
 
      #call function to display employee
      d_pay(e_name,h_worked,p_rate,g_pay,i_tax,e_pay)
-
-     #call running totals function
-     r_totals(h_worked,g_pay,i_tax,e_pay,t_gross,t_hours,t_net,t_tax,e_total)
-    
+      
+     t_gross += g_pay
+     t_hours += h_worked
+     t_tax += i_tax
+     t_net += e_pay
+     e_total += 1
      #get next employee name
-     print
+     print('')
      e_name = employee() 
      
      
   #Call display totals
   totals(e_total,t_hours,t_gross,t_tax,t_net)
 
-def r_totals(h_worked,g_pay,i_tax,e_pay,t_gross,t_hours,t_net,t_tax,e_total):
-    t_gross += g_pay
-    t_hours += h_worked
-    t_tax += i_tax
-    t_net += e_pay
-    e_total += 1
-    return t_hours,t_tax,t_net,t_gross,e_total
 
 #employee name functions
 def employee():
