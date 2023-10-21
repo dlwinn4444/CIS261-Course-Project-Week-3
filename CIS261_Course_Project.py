@@ -13,9 +13,10 @@ def main():
   p_rate = 0
   n_pay = 0
   g_pay = 0
+  
+
   #get first employee name 
   e_name =  employee()
-
   #start loop
   while e_name != 'end':
      #user input hours worked function
@@ -44,10 +45,11 @@ def main():
      t_tax += i_tax
      t_net += e_pay
      e_total += 1
+     
      #get next employee name
      print('')
      e_name = employee() 
-     
+     #loops back line 21 while statement while e_name is not equale to end.
      
   #Call display totals
   totals(e_total,t_hours,t_gross,t_tax,t_net)
@@ -74,16 +76,6 @@ def tax_rate():
     t_rate = t_rate/100
     return t_rate
     
-#display caculated data
-def d_pay(e_name,h_worked,p_rate,g_pay,i_tax,e_pay):
-    
-    print('Emplyee ',e_name)
-    print('Hours: ',f"{h_worked: ,.2f}")
-    print('Pay Rate: $',f"{p_rate:,.2f}",)
-    print('Gross pay: $',f"{g_pay:,.2f}")
-    print('Income tax: $', f"{i_tax:,.2f}")
-    print('Net pay: $', f"{e_pay:,.2f}")
-    return
 
 #caculate gross pay functions
 def grosspay(h_worked,p_rate):
@@ -99,6 +91,17 @@ def taxes(g_pay,t_rate):
 def  net_pay(g_pay,i_tax):
    e_pay = g_pay - i_tax
    return float(e_pay)
+
+#display caculated data
+def d_pay(e_name,h_worked,p_rate,g_pay,i_tax,e_pay):
+    
+    print('Emplyee ',e_name)
+    print('Hours: ',f"{h_worked: ,.2f}")
+    print('Pay Rate: $',f"{p_rate:,.2f}",)
+    print('Gross pay: $',f"{g_pay:,.2f}")
+    print('Income tax: $', f"{i_tax:,.2f}")
+    print('Net pay: $', f"{e_pay:,.2f}")
+    return
 
 #display running totals
 def totals(e_total,t_hours,t_gross,t_tax,t_net):
